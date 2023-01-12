@@ -1,20 +1,14 @@
-package org.firstinspires.ftc.teamcode.test;
+package org.firstinspires.ftc.teamcode.test.vechi;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.teamcode.test.Glisiere;
 import org.firstinspires.ftc.teamcode.vision.DetectionClass;
 import org.firstinspires.ftc.teamcode.vision.pipelines.SleeveDetection;
-import org.tensorflow.lite.task.vision.detector.Detection;
 
 @Autonomous(name="testareAutonom", group="Robot")
 public class testareAutonom extends LinearOpMode {

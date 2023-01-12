@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.test;
+package org.firstinspires.ftc.teamcode.test.vechi;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -10,8 +10,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.vision.DetectionClass;
 import org.firstinspires.ftc.teamcode.vision.pipelines.SleeveDetection;
 
-@Autonomous(name="AutonomStanga", group="Robot")
-public class AutonomStanga extends LinearOpMode {
+@Autonomous(name="AutonomDreapta", group="Robot")
+public class AutonomDreapta extends LinearOpMode {
 
     /* Declare OpMode members. */
     private DcMotor leftFront = null;
@@ -84,32 +84,27 @@ public class AutonomStanga extends LinearOpMode {
         }
 
         waitForStart();
-        if(parkingPosition == SleeveDetection.ParkingPosition.RIGHT) {
+        if(parkingPosition == SleeveDetection.ParkingPosition.LEFT) {
             sleep(500);
 
-            glisiere.setPosition(0);//-2350
+            //glisiere.setPosition(-2350);
+            encoderDrive(DRIVE_SPEED, -27.55, -27.55, 4.0);
+            encoderDrive(TURN_SPEED, -10.5, 10.5 , 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout\
+            //encoderDrive(TURN_SPEED, -1.2, 1.2, 4);
 
-            //encoderDrive(DRIVE_SPEED, -11.8, -11.8, 4.0);
-            //encoderDrive(TURN_SPEED, -10.0, 10.0, 4.0);
-
-
-            encoderDrive(DRIVE_SPEED,22.5, 22.5,4.0);
-            encoderDrive(TURN_SPEED, -10.0, 10.0 , 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout\
-            encoderDrive(DRIVE_SPEED, 32.3, 32.3, 5.0);
-
-
+            encoderDrive(DRIVE_SPEED, 34.0, 34.0, 5);//de adaugat
             sleep(500);
 
             //glisiere.setPosition(-1500);
-            //sleep(400);
+            sleep(400);
             //cleste.setPosition(0.35);
 
-            //encoderDrive(TURN_SPEED, 2.5, -2.5, 4);
+            //encoderDrive(TURN_SPEED, -2.5, 2.5, 4);
             //encoderDrive(DRIVE_SPEED, -1.5, -1.5, 5);
 
-            sleep(500);
+            //sleep(500);
 
-            //glisiere.setPosition(0);
+            glisiere.setPosition(0);
 
             //encoderDrive(DRIVE_SPEED, 6.5, 6.5, 4.0);
 
@@ -118,9 +113,10 @@ public class AutonomStanga extends LinearOpMode {
             sleep(500);
 
             //glisiere.setPosition(-2350);
+            encoderDrive(TURN_SPEED, -10.5, 10.5 , 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout\
+            //encoderDrive(TURN_SPEED, -1.2, 1.2, 4);
 
-            encoderDrive(TURN_SPEED, -10.0, 10.0 , 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout\
-            encoderDrive(DRIVE_SPEED, 34.0, 34.0, 5);
+            encoderDrive(DRIVE_SPEED, 35.0, 35.0, 5);//de adaugat
 
             sleep(500);
 
@@ -131,30 +127,26 @@ public class AutonomStanga extends LinearOpMode {
             glisiere.setPosition(0);
 
             //encoderDrive(DRIVE_SPEED, -1.0, -1.0, 4);
-            //encoderDrive(TURN_SPEED, 1.2, -1.2, 4);
+            //encoderDrive(TURN_SPEED, -1.2, 1.2, 4);
             //encoderDrive(DRIVE_SPEED, 3.0, 3.0, 4);
         }
         else {
             sleep(500);
 
             //glisiere.setPosition(-2350);
-
-            encoderDrive(DRIVE_SPEED, -27.0 , -27.0 , 4.0);  // !!!!1.4
-            encoderDrive(TURN_SPEED, -10.0, 11.0, 5);
+            encoderDrive(DRIVE_SPEED, 26.55, 26.55, 4.0);
+            encoderDrive(TURN_SPEED, -10.5, 10.5 , 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout\
+            encoderDrive(DRIVE_SPEED, 34.0, 34.0, 5);
 
             sleep(500);
 
             //glisiere.setPosition(-1500);
-            //sleep(400);
+            sleep(400);
             //cleste.setPosition(0.35);
 
             glisiere.setPosition(0);
 
-            encoderDrive(DRIVE_SPEED, 35.0, 35.0, 4);
-            //encoderDrive(TURN_SPEED, 1.0, -1.5, 4);
-            //encoderDrive(DRIVE_SPEED, 4.5, 4.5, 4);
-            //encoderDrive(TURN_SPEED, 2.0, -2.0, 4);
-            //encoderDrive(DRIVE_SPEED, 4.5, 4.5, 4);
+            //encoderDrive(DRIVE_SPEED, -1.7, -1.7, 4);
         }
 
         //encoderDrive(DRIVE_SPEED, -2, -2, 4.0);  // S3: Reverse 24 Inches with 4 Sec timeout

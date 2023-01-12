@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.teamcode.test.Glisiere;
+import org.firstinspires.ftc.teamcode.test.vechi.Glisiere;
 
 /* Copyright (c) 2017 FIRST. All rights reserved.
  *

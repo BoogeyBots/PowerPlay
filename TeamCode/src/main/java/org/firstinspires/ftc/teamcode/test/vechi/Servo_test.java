@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.test;
+package org.firstinspires.ftc.teamcode.test.vechi;
 
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -8,16 +8,14 @@ import com.qualcomm.robotcore.hardware.Servo;
 @TeleOp(name = "SERVO TEST")
 public class Servo_test extends LinearOpMode {
     Servo servo = null;
-    Servo dreapta = null;
     double modifier = 0.0001;
 
     double change_modifier = 0.00000005;
 
     @Override
     public void runOpMode() throws InterruptedException {
-        servo = hardwareMap.get(Servo.class, "servo_test");
-        dreapta = hardwareMap.get(Servo.class, "dreapta_test");
-        servo.setPosition(0.5);
+        servo = hardwareMap.get(Servo.class, "servo_gheara");
+        servo.setPosition(0.1);
         waitForStart();
 
 
@@ -42,17 +40,10 @@ public class Servo_test extends LinearOpMode {
                 servo.setPosition(servo.getPosition() + modifier  * gamepad1.right_trigger);
             }
 
-            if(gamepad1.cross) {
-                dreapta.setPosition(0.615);
-            }
-            if(gamepad1.triangle) {
-                dreapta.setPosition(0.215);
-            }
 
             telemetry.addData("POZITIE SERVO", servo.getPosition());
             telemetry.addData("MODIFIER", modifier);
             telemetry.addData("CHANGE MODIFIER", change_modifier);
-            telemetry.addData("POZITIE DREAPTA: ", dreapta.getPosition());
 
             telemetry.update();
         }
