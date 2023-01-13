@@ -59,7 +59,7 @@ public class TestCiclu extends LinearOpMode {
                 servo_gheare.setPosition(0.0);
             }
             else if(gamepad1.y){
-                servo_gheare.setPosition(0.4);
+                servo_gheare.setPosition(0.38);
             }
 
             if(gamepad1.right_bumper){
