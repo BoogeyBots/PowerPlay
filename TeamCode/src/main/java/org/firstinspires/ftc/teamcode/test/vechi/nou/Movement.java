@@ -18,11 +18,11 @@ public class Movement extends LinearOpMode {
 
         leftFront = hardwareMap.get(DcMotor.class, "leftFront");
         rightFront = hardwareMap.get(DcMotor.class, "rightFront");
-        leftBack = hardwareMap.get(DcMotor.class, "leftBack");
-        rightBack = hardwareMap.get(DcMotor.class, "rightBack");
+        leftBack = hardwareMap.get(DcMotor.class, "leftRear");
+        rightBack = hardwareMap.get(DcMotor.class, "rightRear");
 
         leftFront.setDirection(DcMotor.Direction.REVERSE);
-        rightBack.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftBack.setDirection(DcMotorSimple.Direction.REVERSE);
 
         leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);

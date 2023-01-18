@@ -45,7 +45,7 @@ public class Glisiere1Encoder extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()){
-            /*
+
             if(gamepad1.a){
                 if(motorDR_ENC.getTargetPosition()  >= poz_min && motorDR_ENC.getTargetPosition() + modifier <= poz_max){
                     motorDR_ENC.setTargetPosition(Range.clip(motorDR_ENC.getTargetPosition() + modifier, poz_min, poz_max ));
@@ -58,13 +58,7 @@ public class Glisiere1Encoder extends LinearOpMode {
             }
             else
                 motorDR_ENC.setTargetPosition(motorDR_ENC.getCurrentPosition());
-*/
-            if(gamepad1.x){
-                motorDR_ENC.setTargetPosition(3170);
-            }
-            if (gamepad1.y){
-                motorDR_ENC.setTargetPosition(0);
-            }
+
 
             if(gamepad1.dpad_up){
                 modifier++;
@@ -73,7 +67,14 @@ public class Glisiere1Encoder extends LinearOpMode {
                 modifier--;
             }
 
-            motorST.setVelocity(motorDR_ENC.getVelocity());
+            if(gamepad1.x){
+                motorDR_ENC.setTargetPosition(3170);
+            }
+            if (gamepad1.y){
+                motorDR_ENC.setTargetPosition(0);
+            }
+
+
 
 
             telemetry.addData("Pozitia curenta", motorDR_ENC.getCurrentPosition());

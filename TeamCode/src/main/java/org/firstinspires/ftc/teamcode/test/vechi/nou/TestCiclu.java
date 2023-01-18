@@ -1,13 +1,19 @@
 package org.firstinspires.ftc.teamcode.test.vechi.nou;
 
+import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.modules.GlisieraModule;
+
 @TeleOp(name = "PE CICLU")
 public class TestCiclu extends LinearOpMode {
+
+
 
     Brat brat = new Brat(hardwareMap);
 
@@ -22,36 +28,43 @@ public class TestCiclu extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
+        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+        drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        drive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        GlisieraModule glisieraModule = new GlisieraModule(hardwareMap);
+
         servo_gheare = hardwareMap.get(Servo.class, "servo_gheara");
         servo_gheare.setPosition(0.0);
-        motorDR_ENC = hardwareMap.get(DcMotorEx.class, "motorST");
-        motorST = hardwareMap.get(DcMotorEx.class, "motorDR");
-        motorDR_ENC.setTargetPosition(0);
-        motorDR_ENC.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
-        motorDR_ENC.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-        motorST.setDirection(DcMotorEx.Direction.REVERSE);
-        motorST.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        motorST.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
-        motorDR_ENC.setVelocityPIDFCoefficients(16.0, 2.0, 0.0 , 5.0);
-        motorDR_ENC.setPower(1.0);
 
         servoDR = hardwareMap.get(Servo.class, "servo_brat_dr");
         servoST = hardwareMap.get(Servo.class, "servo_brat_st");
 
-        servoST.setPosition(0.5);
-        servoDR.setPosition(0.5);
+        servoST.setPosition(0.140);
+        servoDR.setPosition(1.0 - 0.140);
+
+        glisieraModule.init();
 
         waitForStart();
 
         while (opModeIsActive()) {
+            drive.setWeightedDrivePower(
+                    new Pose2d(
+                            -gamepad1.left_stick_y,
+                            -(gamepad1.left_stick_x),
+                            -gamepad1.right_stick_x
+                    )
+            );
+
+            drive.update();
+
             if (gamepad1.a) {
 
-                servoST.setPosition(0.1238);
-                servoDR.setPosition(1.0 - 0.1238);
+                servoST.setPosition(0.140);
+                servoDR.setPosition(1.0 - 0.140);
             } else if (gamepad1.b) {
-                servoST.setPosition(0.608);
-                servoDR.setPosition(1.0 - 0.608);
+                servoST.setPosition(0.70);
+                servoDR.setPosition(1.0 - 0.70);
 
             }
 
@@ -59,19 +72,16 @@ public class TestCiclu extends LinearOpMode {
                 servo_gheare.setPosition(0.0);
             }
             else if(gamepad1.y){
-                servo_gheare.setPosition(0.38);
+                servo_gheare.setPosition(0.45);
             }
 
             if(gamepad1.right_bumper){
-                motorDR_ENC.setTargetPosition(3170);
+                glisieraModule.goUp();
             }
             if (gamepad1.left_bumper){
-                motorDR_ENC.setTargetPosition(0);
+                glisieraModule.goDown();
             }
-
-            motorST.setVelocity(motorDR_ENC.getVelocity());
-
-
+            glisieraModule.update();
         }
 
     }
