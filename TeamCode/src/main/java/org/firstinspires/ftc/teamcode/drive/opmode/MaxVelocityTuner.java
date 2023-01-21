@@ -26,10 +26,10 @@ import java.util.Objects;
 @Config
 @Autonomous(group = "drive")
 public class MaxVelocityTuner extends LinearOpMode {
-    public static double RUNTIME = 2.0;
+    public static double RUNTIME = 1.0;
 
     private ElapsedTime timer;
-    private double maxVelocity = 0.0;
+    private double maxVelocity = 66.073749148;
 
     private VoltageSensor batteryVoltageSensor;
 

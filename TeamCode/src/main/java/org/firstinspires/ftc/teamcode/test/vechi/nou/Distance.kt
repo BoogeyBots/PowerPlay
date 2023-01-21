@@ -49,24 +49,13 @@ class Distance : LinearOpMode() {
         // you can use this as a regular DistanceSensor.
         sensorRange = hardwareMap.get(DistanceSensor::class.java, "sensor_range")
 
-
-        // you can also cast this to a Rev2mDistanceSensor if you want to use added
-        // methods associated with the Rev2mDistanceSensor class.
-        telemetry.addData(">>", "Press start to continue")
-        telemetry.update()
         waitForStart()
         while (opModeIsActive()) {
 
             if(sensorRange.getDistance(DistanceUnit.CM) < 6.5){
                 has_detected = true
             }
-
-
-            telemetry.addData(
-                "range",
-                String.format("%.01f cm", sensorRange.getDistance(DistanceUnit.CM))
-            )
-
+            telemetry.addData("Distanta pentru Nicu", sensorRange.getDistance(DistanceUnit.CM))
             telemetry.update()
         }
     }

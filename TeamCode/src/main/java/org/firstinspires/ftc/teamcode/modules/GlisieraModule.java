@@ -50,11 +50,15 @@ public class GlisieraModule {
     }
 
     public void goUp(){
-        controller.setSetPoint(3170);
+        controller.setSetPoint(3180);
     }
 
     public void goDown(){
        controller.setSetPoint(0);
+    }
+
+    public void goMid(){
+      controller.setSetPoint(500);
     }
 
 
