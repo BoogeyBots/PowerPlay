@@ -5,37 +5,39 @@ import com.arcrobotics.ftclib.controller.PIDController;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
-
-public class Distance1 {
+public class IntakeModule {
     HardwareMap hardwareMap;
 
-    public Distance1(HardwareMap hardwareMap) {
+    public IntakeModule(HardwareMap hardwareMap) {
         this.hardwareMap = hardwareMap;
     }
 
-    public DistanceSensor sensorRange = null;
+    Servo servo_gheare = null;
+
 
     public void init() {
 
-        sensorRange = hardwareMap.get(DistanceSensor.class, "Sensor");
+        servo_gheare = hardwareMap.get(Servo.class, "servo_gheara");
+        servo_gheare.setPosition(0.0);
 
     }
 
-    public void update(){
 
-    }
-
-    public void detect()
+    public void open()
     {
-        if(sensorRange.getDistance(DistanceUnit.CM) < 1.0){
-
-        }
+        servo_gheare.setPosition(0.0);
     }
+
+    public void close()
+    {
+        servo_gheare.setPosition(0.42);
+    }
+
+
 
 }
 
