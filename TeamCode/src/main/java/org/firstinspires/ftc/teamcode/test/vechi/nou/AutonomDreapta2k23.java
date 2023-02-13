@@ -94,7 +94,7 @@ public class AutonomDreapta2k23 extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(1,bratModule::goUp)
                 .waitSeconds(1)
                 .UNSTABLE_addTemporalMarkerOffset(1,glisieraModule::goUp)
-                .waitSeconds(4)
+                .waitSeconds(2)
                 .UNSTABLE_addTemporalMarkerOffset(1,intake::open)
                 .waitSeconds(1)
                 .lineToLinearHeading(new Pose2d(-18, 54, Math.toRadians(-61)))

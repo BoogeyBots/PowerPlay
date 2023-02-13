@@ -70,17 +70,17 @@ public class TestAutonom extends LinearOpMode {
         waitForStart();
 
         if (parkingPosition == SleeveDetection.ParkingPosition.RIGHT) {
-            x=16;
-            y=36;
+            x=20;
+            y=14;
 
         } else if (parkingPosition == SleeveDetection.ParkingPosition.CENTER) {
-            x=38;
-            y=35;
+            x=42;
+            y=14;
         }
 
         else if (parkingPosition == SleeveDetection.ParkingPosition.LEFT){
-            x=62;
-            y=35;
+            x=63;
+            y=14;
         }
 
         Pose2d startPose = new Pose2d(36.00, 63.0, Math.toRadians(-90));
@@ -89,24 +89,34 @@ public class TestAutonom extends LinearOpMode {
 
         TrajectorySequence traj1 = drive.trajectorySequenceBuilder(startPose)
                 .lineTo(new Vector2d(16, 63))
-                .waitSeconds(1)
                 .lineToLinearHeading(new Pose2d(17, 48.5, Math.toRadians(-119)))
-                .UNSTABLE_addTemporalMarkerOffset(1,bratModule::goUp)
-                .waitSeconds(1)
+                .UNSTABLE_addTemporalMarkerOffset(0,bratModule::goUp)
                 .UNSTABLE_addTemporalMarkerOffset(1,glisieraModule::goUp)
-                .waitSeconds(4)
+                .waitSeconds(2)
                 .UNSTABLE_addTemporalMarkerOffset(1,intake::open)
                 .waitSeconds(1)
-                .lineToLinearHeading(new Pose2d(18, 54, Math.toRadians(-119)))
-                .UNSTABLE_addTemporalMarkerOffset(1,glisieraModule::goDown)
-                .waitSeconds(2)
-                .UNSTABLE_addTemporalMarkerOffset(1,bratModule::goDown)
-                .waitSeconds(2)
-                .turn(Math.toRadians(29))
-                .lineTo(new Vector2d(16, 35))
-                .turn(Math.toRadians(90))
+                .lineToLinearHeading(new Pose2d(18, 54, Math.toRadians(-90)))
+                .UNSTABLE_addTemporalMarkerOffset(0,glisieraModule::goDown)
+                .UNSTABLE_addTemporalMarkerOffset(0,bratModule::autonom)
+                //.lineToLinearHeading(new Pose2d(16, 35, Math.toRadians(0.0)))
+                .lineToLinearHeading(new Pose2d(16, 14, Math.toRadians(180.0)))
+                .lineToLinearHeading(new Pose2d(65.5, 13.8, Math.toRadians(180.0)))
+                //.lineToLinearHeading(new Pose2d(x, y, Math.toRadians(180.)))
+                .UNSTABLE_addTemporalMarkerOffset(1,intake::close)
                 .waitSeconds(1)
-                .lineTo(new Vector2d(x,y))
+                .UNSTABLE_addTemporalMarkerOffset(1,bratModule::goUp)
+                .waitSeconds(2)
+                .lineToLinearHeading(new Pose2d(52.3, 14.2, Math.toRadians(180.0)))
+                .turn(Math.toRadians(32))
+                .UNSTABLE_addTemporalMarkerOffset(1,glisieraModule::goUp)
+                .waitSeconds(2)
+                .UNSTABLE_addTemporalMarkerOffset(1,intake::open)
+                .waitSeconds(1)
+                .lineToLinearHeading(new Pose2d(57.3, 14.2, Math.toRadians(212.0)))
+                .UNSTABLE_addTemporalMarkerOffset(0,glisieraModule::goDown)
+                .UNSTABLE_addTemporalMarkerOffset(0,bratModule::autonom)
+                .turn(Math.toRadians(-32))
+                .lineToLinearHeading(new Pose2d(x, y, Math.toRadians(180.0)))
                 .build();
 
 

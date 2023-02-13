@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.modules;
 
-import com.acmerobotics.dashboard.FtcDashboard;
+import  com.acmerobotics.dashboard.FtcDashboard;
 import com.arcrobotics.ftclib.controller.PIDController;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -34,7 +34,7 @@ public class IntakeModule {
 
     public void close()
     {
-        servo_gheare.setPosition(0.42);
+        servo_gheare.setPosition(0.35);
     }
 
 

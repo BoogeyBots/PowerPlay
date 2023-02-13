@@ -24,16 +24,16 @@ public class BratSModule {
 
         servoDR = hardwareMap.get(Servo.class, "servo_brat_dr");
         servoST = hardwareMap.get(Servo.class, "servo_brat_st");
-        servoST.setPosition(0.125);
-        servoDR.setPosition(1.0 - 0.125);
+        servoST.setPosition(0.12);
+        servoDR.setPosition(1.0 - 0.12);
 
     }
 
 
     public void goDown()
     {
-        servoST.setPosition(0.125);
-        servoDR.setPosition(1.0 - 0.125);
+        servoST.setPosition(0.12);
+        servoDR.setPosition(1.0 - 0.12);
     }
 
     public void goUp()
@@ -41,12 +41,15 @@ public class BratSModule {
         servoST.setPosition(0.625);
         servoDR.setPosition(1.0 - 0.625);
     }
-    public void goBlack()
-    {
+    public void goBlack() {
         servoST.setPosition(0.175);
         servoDR.setPosition(1.0 - 0.175);
     }
-
+    public void autonom()
+    {
+        servoST.setPosition(0.201666);
+        servoDR.setPosition(1-0.201666);
+    }
 
 
 }

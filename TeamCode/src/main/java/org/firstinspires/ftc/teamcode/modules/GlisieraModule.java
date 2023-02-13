@@ -33,7 +33,7 @@ public class GlisieraModule {
        motorDR_ENC.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
        motorST.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-       motorST.setDirection(DcMotorSimple.Direction.REVERSE);
+       motorDR_ENC.setDirection(DcMotorEx.Direction.REVERSE);
 
        controller.reset();
 
@@ -50,7 +50,7 @@ public class GlisieraModule {
     }
 
     public void goUp(){
-        controller.setSetPoint(3200);
+        controller.setSetPoint(1600);
     }
 
     public void goDown(){
@@ -58,7 +58,7 @@ public class GlisieraModule {
     }
 
     public void goMid(){
-      controller.setSetPoint(500);
+      controller.setSetPoint(250);
     }
 
 
