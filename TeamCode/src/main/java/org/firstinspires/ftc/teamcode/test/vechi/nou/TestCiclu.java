@@ -100,6 +100,7 @@ public class TestCiclu extends LinearOpMode {
             //    elapsedTime.reset();
               //  con_detectat = false;
             }
+
             else if(gamepad2.y){
                 intake.close();
             }
