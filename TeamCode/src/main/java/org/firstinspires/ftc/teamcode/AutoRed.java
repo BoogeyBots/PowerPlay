@@ -53,15 +53,15 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
-
+@Disabled
 @Autonomous(name="Robot: Auto Drive Red By Time", group="Robot")
 public class AutoRed extends LinearOpMode {
 
     /* Declare OpMode members. */
     private DcMotor LeftFrontDrive = null;
     private DcMotor RightFrontDrive = null;
-    private DcMotor         LeftBackDrive   = null;
-    private DcMotor         RightBackDrive  = null;
+    private DcMotor LeftBackDrive   = null;
+    private DcMotor RightBackDrive  = null;
 
     private ElapsedTime     runtime = new ElapsedTime();
 
@@ -80,6 +80,7 @@ public class AutoRed extends LinearOpMode {
         // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
         // When run, this OpMode should start both motors driving forward. So adjust these two lines based on your first test drive.
         // Note: The settings here assume direct drive on left and right wheels.  Gear Reduction or 90 Deg drives may require direction flips
+
         LeftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
         RightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         LeftBackDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -106,6 +107,7 @@ public class AutoRed extends LinearOpMode {
             telemetry.addData("Path", "Leg 2: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
         }
+
         LeftFrontDrive.setPower(FORWARD_SPEED);
         RightFrontDrive.setPower(FORWARD_SPEED);
         LeftBackDrive.setPower(FORWARD_SPEED);
@@ -115,6 +117,8 @@ public class AutoRed extends LinearOpMode {
             telemetry.addData("Path", "Leg 1: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
         }
+
+
         LeftFrontDrive.setPower(-TURN_SPEED);
         RightFrontDrive.setPower(TURN_SPEED);
         LeftBackDrive.setPower(-TURN_SPEED);

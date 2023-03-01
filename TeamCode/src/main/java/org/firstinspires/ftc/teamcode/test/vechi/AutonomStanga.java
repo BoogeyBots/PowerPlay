@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.test.vechi;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -9,7 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.vision.DetectionClass;
 import org.firstinspires.ftc.teamcode.vision.pipelines.SleeveDetection;
-
+@Disabled
 @Autonomous(name="AutonomStanga", group="Robot")
 public class AutonomStanga extends LinearOpMode {
 
@@ -31,7 +32,6 @@ public class AutonomStanga extends LinearOpMode {
     static final double COUNTS_PER_INCH_GLISIERA = (COUNTS_PER_MOTOR_REV_GLISIERA * DRIVE_GEAR_REDUCTION) / LUNGIME_GLISIERA;
     static final double DRIVE_SPEED = 0.6;
     static final double TURN_SPEED = 0.5;
-
     @Override
     public void runOpMode() throws InterruptedException {
         // Initialize the drive system variables.

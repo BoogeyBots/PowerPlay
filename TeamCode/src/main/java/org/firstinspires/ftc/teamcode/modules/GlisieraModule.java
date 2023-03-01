@@ -15,10 +15,10 @@ public class GlisieraModule {
         this.hardwareMap = hardwareMap;
     }
 
-    public static double kp=4.0, ki=2.0 , kd=0.0;
+    public static double kp=4.0, ki=0.0 , kd=0.1;
     public DcMotorEx motorDR_ENC = null;
     public DcMotorEx motorST = null;
-    PIDController controller = new PIDController(4.0, 0.0, 0.0);
+    PIDController controller = new PIDController(4.0, 0.0, 0.1);
 
 
    public void init() {
@@ -42,7 +42,7 @@ public class GlisieraModule {
     public void update(){
         if (!controller.atSetPoint()) {
             double output = controller.calculate(
-                    motorDR_ENC.getCurrentPosition()      // the measured value
+                    motorST.getCurrentPosition()      // the measured value
             );
             motorST.setVelocity(output);
             motorDR_ENC.setVelocity(output);

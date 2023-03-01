@@ -11,7 +11,7 @@ import org.openftc.easyopencv.OpenCvInternalCamera;
 public class DetectionClass extends SleeveDetection{
     HardwareMap hardwareMap;
     SleeveDetection sleeveDetection = new SleeveDetection();
-    OpenCvCamera camera;
+    OpenCvInternalCamera camera;
     String webcamName = "Webcam 1";
 
     public DetectionClass(HardwareMap hardwareMap) {
@@ -31,10 +31,13 @@ public class DetectionClass extends SleeveDetection{
             public void onOpened()
             {
                 camera.startStreaming(320,240, OpenCvCameraRotation.UPRIGHT);
+
             }
 
             @Override
             public void onError(int errorCode) {}
+
+
         });
     }
 
@@ -44,6 +47,18 @@ public class DetectionClass extends SleeveDetection{
 
     public ParkingPosition getPosition(){
         return sleeveDetection.getPosition();
+    }
+
+    public void startFlashlight() {
+
+        camera.setFlashlightEnabled(true);
+
+    }
+
+    public void stopFlashlight() {
+
+        camera.setFlashlightEnabled(false);
+
     }
 
 

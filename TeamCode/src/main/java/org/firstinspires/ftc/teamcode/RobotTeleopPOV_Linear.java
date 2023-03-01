@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -49,6 +50,7 @@ import org.firstinspires.ftc.teamcode.test.vechi.Glisiere;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
+@Disabled
 @TeleOp(name="Robot: Teleop POV", group="Robot")
 public class RobotTeleopPOV_Linear extends LinearOpMode {
 
@@ -125,11 +127,13 @@ public class RobotTeleopPOV_Linear extends LinearOpMode {
             // Run wheels in POV mode (note: The joystick goes negative when pushed forward, so negate it)
             // In this mode the Left stick moves the robot fwd and back, the Right stick turns left and right.
             // This way it's also easy to just y straight, or just x.
+
             y = -gamepad1.left_stick_y*.4;
             x  =  gamepad1.right_stick_x*.3;
 
 
             // Combine y and x for blended motion.
+
             left  = y + x;
             right = y - x;
 

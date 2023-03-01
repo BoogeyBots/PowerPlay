@@ -17,11 +17,11 @@ import com.qualcomm.robotcore.util.Range;
 @TeleOp(name = "Glisiere PID", group = "Robot")
 public class GlisierePID extends LinearOpMode {
     FtcDashboard dashboard;
-    public static double kp=4.0, ki=2.0 , kd=0.0;
+    public static double kp=4.0, ki=0.0 , kd=0.1;
     public DcMotorEx motorDR_ENC = null;
     public DcMotorEx motorST = null;
     int modifier = 50;
-    int poz_max = 3170;
+    int poz_max = 1600;
     int poz_min = 0;
     //pozitie mid=3400
     //pozite low=2600
@@ -45,11 +45,14 @@ public class GlisierePID extends LinearOpMode {
         motorDR_ENC.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorST.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        motorST.setDirection(DcMotorSimple.Direction.REVERSE);
+        motorST.setDirection(DcMotorSimple.Direction.FORWARD);
+        motorDR_ENC.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        PIDController controller = new PIDController(2.6 , 0.0 , 0.25);
+        PIDController controller = new PIDController(4.0 , 0.0 , 0.1);
 
         controller.reset();
+
+        // controller.setTolerance(0.1);
 
         waitForStart();
 
@@ -73,33 +76,36 @@ public class GlisierePID extends LinearOpMode {
                     controller.setSetPoint(Range.clip(controller.getSetPoint() - modifier, poz_min, poz_max ));
                 }
             }
-            else
+            else {
                 controller.setSetPoint(controller.getSetPoint());
-
+            }
 
             controller.setP(kp);
             controller.setI(ki);
             controller.setD(kd);
 
-                if(gamepad1.x){
-                    controller.setSetPoint(3170);
-                }
-                if (gamepad1.y){
+            if(gamepad1.x){
+                controller.setSetPoint(1600);
+            }
+            if (gamepad1.y){
                 controller.setSetPoint(0);
             }
 
-            if (!controller.atSetPoint()) {
+            if (Math.abs(motorST.getCurrentPosition() - controller.getSetPoint()) < 2.0) {
                 double output = controller.calculate(
-                        motorDR_ENC.getCurrentPosition()      // the measured value
+                        motorST.getCurrentPosition()      // the measured value
                 );
+                telemetry.addData("Output", output);
                 motorST.setVelocity(output);
                 motorDR_ENC.setVelocity(output);
             }
 
 
             dashboard.updateConfig();
-            telemetry.addData("Pozitia curenta", motorDR_ENC.getCurrentPosition());
+            telemetry.addData("A AJUNS?", controller.atSetPoint());
+            telemetry.addData("Pozitia curenta", motorST.getCurrentPosition());
             telemetry.addData("Pozitia care trb atinsa", controller.getSetPoint());
+            telemetry.addData("Eroare Pozitie", controller.getPositionError());
             telemetry.update();
         }
     }

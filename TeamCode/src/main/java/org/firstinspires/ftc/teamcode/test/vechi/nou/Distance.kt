@@ -32,15 +32,14 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package org.firstinspires.ftc.teamcode.test
 
-import com.qualcomm.hardware.rev.Rev2mDistanceSensor
+
 import com.qualcomm.robotcore.eventloop.opmode.Disabled
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp
-import com.qualcomm.robotcore.hardware.DcMotor
 import com.qualcomm.robotcore.hardware.DistanceSensor
-import com.qualcomm.robotcore.hardware.Servo
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit
 
+@Disabled
 @TeleOp(name = "Distance și Servo", group = "Sensor")
 class Distance : LinearOpMode() {
     lateinit var sensorRange: DistanceSensor
@@ -52,7 +51,7 @@ class Distance : LinearOpMode() {
         waitForStart()
         while (opModeIsActive()) {
 
-            if(sensorRange.getDistance(DistanceUnit.CM) < 6.5){
+            if(sensorRange.getDistance(DistanceUnit.CM) < 3){
                 has_detected = true
             }
             telemetry.addData("Distanta pentru Nicu", sensorRange.getDistance(DistanceUnit.CM))

@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.test.vechi;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -9,7 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.vision.DetectionClass;
 import org.firstinspires.ftc.teamcode.vision.pipelines.SleeveDetection;
-
+@Disabled
 @Autonomous(name="AutonomDreapta", group="Robot")
 public class AutonomDreapta extends LinearOpMode {
 
@@ -48,6 +49,7 @@ public class AutonomDreapta extends LinearOpMode {
         // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
         // When run, this OpMode should start both motors driving forward. So adjust these two lines based on your first test drive.
         // Note: The settings here assume direct drive on left and right wheels.  Gear Reduction or 90 Deg drives may require direction flips
+
         leftFront.setDirection(DcMotor.Direction.REVERSE);
         rightFront.setDirection(DcMotor.Direction.FORWARD);
         leftBack.setDirection(DcMotor.Direction.REVERSE);
@@ -62,7 +64,10 @@ public class AutonomDreapta extends LinearOpMode {
         rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+
         // Send telemetry message to indicate successful Encoder reset
+
         telemetry.addData("Starting at", "%7d :%7d",
                 leftFront.getCurrentPosition(),
                 rightFront.getCurrentPosition(),
@@ -85,11 +90,15 @@ public class AutonomDreapta extends LinearOpMode {
 
         waitForStart();
         if(parkingPosition == SleeveDetection.ParkingPosition.LEFT) {
+
             sleep(500);
 
             //glisiere.setPosition(-2350);
+
             encoderDrive(DRIVE_SPEED, -27.55, -27.55, 4.0);
-            encoderDrive(TURN_SPEED, -10.5, 10.5 , 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout\
+            encoderDrive(TURN_SPEED, -10.5, 10.5 , 4.0);
+
+            // S2: Turn Right 12 Inches with 4 Sec timeout\
             //encoderDrive(TURN_SPEED, -1.2, 1.2, 4);
 
             encoderDrive(DRIVE_SPEED, 34.0, 34.0, 5);//de adaugat
@@ -109,7 +118,9 @@ public class AutonomDreapta extends LinearOpMode {
             //encoderDrive(DRIVE_SPEED, 6.5, 6.5, 4.0);
 
         }
+
         else if (parkingPosition == SleeveDetection.ParkingPosition.CENTER) {
+
             sleep(500);
 
             //glisiere.setPosition(-2350);
@@ -130,10 +141,13 @@ public class AutonomDreapta extends LinearOpMode {
             //encoderDrive(TURN_SPEED, -1.2, 1.2, 4);
             //encoderDrive(DRIVE_SPEED, 3.0, 3.0, 4);
         }
+
         else {
+
             sleep(500);
 
             //glisiere.setPosition(-2350);
+
             encoderDrive(DRIVE_SPEED, 26.55, 26.55, 4.0);
             encoderDrive(TURN_SPEED, -10.5, 10.5 , 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout\
             encoderDrive(DRIVE_SPEED, 34.0, 34.0, 5);

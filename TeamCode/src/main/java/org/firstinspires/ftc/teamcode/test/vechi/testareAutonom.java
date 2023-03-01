@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.test.vechi;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -9,7 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.vision.DetectionClass;
 import org.firstinspires.ftc.teamcode.vision.pipelines.SleeveDetection;
-
+@Disabled
 @Autonomous(name="testareAutonom", group="Robot")
 public class testareAutonom extends LinearOpMode {
 

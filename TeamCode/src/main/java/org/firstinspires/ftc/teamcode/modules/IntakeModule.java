@@ -34,7 +34,7 @@ public class IntakeModule {
 
     public void close()
     {
-        servo_gheare.setPosition(0.35);
+        servo_gheare.setPosition(0.48);
     }
 
 
