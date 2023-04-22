@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Regionala;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -18,6 +19,7 @@ import org.firstinspires.ftc.teamcode.modules.OdometrieModule;
 import org.firstinspires.ftc.teamcode.test.vechi.nou.Brat;
 import org.firstinspires.ftc.teamcode.modules.ImpingatoareModule;
 
+@Disabled
 @TeleOp(name = "TeleOP")
 public class TestCiclu extends LinearOpMode {
 
@@ -158,16 +160,18 @@ public class TestCiclu extends LinearOpMode {
             if (gamepad2.left_bumper) {
                 timpCoborare.reset();
                 bratModule.goSemi();
-                glisieraModule.goDown();
                 boolCoborare = true;
             }
 
 
-            if(boolCoborare && timpCoborare.milliseconds() > 250.0){
+            if(boolCoborare && timpCoborare.milliseconds() > 200.0){
+                glisieraModule.goDown();
+            }
+
+            if(boolCoborare && timpCoborare.milliseconds() > 700.0){
                 boolCoborare = false;
                 bratModule.goDown();
             }
-
 
             if(gamepad2.dpad_down)
             {

@@ -32,8 +32,8 @@ public class   BratSModule {
 
     public void goDown()
     {
-        servoST.setPosition(0.105);
-        servoDR.setPosition(1.0 - 0.105);
+        servoST.setPosition(0.09);//0.105
+        servoDR.setPosition(1.0 - 0.09);
     }
     public void goUp()
     {
@@ -46,8 +46,8 @@ public class   BratSModule {
     }
     public void autonom()
     {
-        servoST.setPosition(0.183);
-        servoDR.setPosition(1-0.183); //0.1738
+        servoST.setPosition(0.185);
+        servoDR.setPosition(1-0.185); //0.1738
     }
     public void goLow()
     {
@@ -61,8 +61,8 @@ public class   BratSModule {
     }
     public void autonom2()
     {
-        servoST.setPosition(0.1738);
-        servoDR.setPosition(1 - 0.1738);
+        servoST.setPosition(0.169);
+        servoDR.setPosition(1 - 0.169);
     }
     public void autonom3()
     {

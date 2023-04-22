@@ -33,7 +33,7 @@ public class AutonomStangaNationala extends LinearOpMode {
     Trajectory traj2;
     Trajectory traj3;
 
-    int x, y;
+    double x, y;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -76,67 +76,66 @@ public class AutonomStangaNationala extends LinearOpMode {
             y = 14;
 
         } else if (parkingPosition == SleeveDetection.ParkingPosition.CENTER) {
-            x = 41;
+            x = 40; //41
             y = 14;
         } else if (parkingPosition == SleeveDetection.ParkingPosition.LEFT) {
-            x = 63;
+            x = 63.5;
             y = 14;
         }
 
-        Pose2d startPose = new Pose2d(36.39, 63.0, Math.toRadians(-90));
+        Pose2d startPose = new Pose2d(36., 63.0, Math.toRadians(-90));
 
         drive.setPoseEstimate(startPose);
 
         TrajectorySequence traj1 = drive.trajectorySequenceBuilder(startPose)
                 .lineTo(new Vector2d(38, 63))
                 .UNSTABLE_addTemporalMarkerOffset(0.5, bratModule::goUp)
-                .lineTo((new Vector2d(38, 24.5)))
+                .lineTo((new Vector2d(38, 25.5)))
                 .UNSTABLE_addTemporalMarkerOffset(0.5, glisieraModule::goUp)
-                .turn(Math.toRadians(-29))
-
+                .turn(Math.toRadians(-27.5))
                 .waitSeconds(0.5)
                 .UNSTABLE_addTemporalMarkerOffset(0.5, intake::open)
                 .waitSeconds(1)
                 .UNSTABLE_addTemporalMarkerOffset(0, bratModule::autonom)
-                .UNSTABLE_addTemporalMarkerOffset(0, glisieraModule::goDown)
+                .UNSTABLE_addTemporalMarkerOffset(1, glisieraModule::goDown)
                 .lineToLinearHeading(new Pose2d(38, 12, Math.toRadians(180)))
-                .lineToLinearHeading(new Pose2d(65.3, 13., Math.toRadians(180.0)))
+                .lineToLinearHeading(new Pose2d(64.4, 13., Math.toRadians(180.0)))
                 .waitSeconds(0.5)
                 .UNSTABLE_addTemporalMarkerOffset(0, intake::close)
                 .waitSeconds(0.5)
                 .UNSTABLE_addTemporalMarkerOffset(0, bratModule::goUp)
                 .waitSeconds(0.5)
-                .lineToLinearHeading(new Pose2d(52.3, 14.23, Math.toRadians(-180.0)))
-                .UNSTABLE_addTemporalMarkerOffset(0.5, glisieraModule::goUp)
-                .turn(Math.toRadians(34))
+                .lineToLinearHeading(new Pose2d(50.6, 13.63, Math.toRadians(-180.0)))
+                .UNSTABLE_addTemporalMarkerOffset(0.6, glisieraModule::goUp)
+                .turn(Math.toRadians(33))
                 .waitSeconds(0.5)
                 .UNSTABLE_addTemporalMarkerOffset(0.5, intake::open)
                 .waitSeconds(0.5)
-                .lineToLinearHeading(new Pose2d(57.3, 14.2, Math.toRadians(214.0)))
-                .UNSTABLE_addTemporalMarkerOffset(0, glisieraModule::goDown)
+                .lineToLinearHeading(new Pose2d(57.3, 14.2, Math.toRadians(213.0)))
                 .UNSTABLE_addTemporalMarkerOffset(0, bratModule::autonom2)
-                .turn(Math.toRadians(-34))
-                .lineToLinearHeading(new Pose2d(65.3, 12.1, Math.toRadians(180.0)))
+                .turn(Math.toRadians(-33))
+                .UNSTABLE_addTemporalMarkerOffset(0, glisieraModule::goDown)
+                .lineToLinearHeading(new Pose2d(64.5, 12.1, Math.toRadians(180.0)))
                 .waitSeconds(0.5)
                 .UNSTABLE_addTemporalMarkerOffset(0, intake::close)
                 .waitSeconds(0.5)
                 .UNSTABLE_addTemporalMarkerOffset(0, bratModule::goUp)
                 .waitSeconds(0.5)
-                .lineToLinearHeading(new Pose2d(52.3, 14.23, Math.toRadians(-180.0)))
-                .UNSTABLE_addTemporalMarkerOffset(0.5, glisieraModule::goUp)
-                .turn(Math.toRadians(34))
+                .lineToLinearHeading(new Pose2d(50.8, 13.63, Math.toRadians(-180.0)))
+                .UNSTABLE_addTemporalMarkerOffset(0.6, glisieraModule::goUp)
+                .turn(Math.toRadians(33))
                 .waitSeconds(0.5)
                 .UNSTABLE_addTemporalMarkerOffset(0.5, intake::open)
                 .waitSeconds(0.5)
-                .lineToLinearHeading(new Pose2d(57.3, 14.2, Math.toRadians(214.0)))
-                .UNSTABLE_addTemporalMarkerOffset(0, glisieraModule::goDown)
+                .lineToLinearHeading(new Pose2d(57.3, 14.2, Math.toRadians(213.0)))
                 .UNSTABLE_addTemporalMarkerOffset(0, bratModule::autonom2)
-                .turn(Math.toRadians(-34))
+                .turn(Math.toRadians(-33))
+                .UNSTABLE_addTemporalMarkerOffset(0, glisieraModule::goDown)
                 .lineToLinearHeading(new Pose2d(x, y, Math.toRadians(180.0)))
 
 
                 .build();
-
+    
 
         drive.followTrajectorySequenceAsync(traj1);
 

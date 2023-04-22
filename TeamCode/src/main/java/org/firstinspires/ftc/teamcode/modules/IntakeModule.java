@@ -25,6 +25,10 @@ public class IntakeModule {
         servo_gheare.setPosition(0.0);
 
     }
+    public void initializare()
+    {
+        servo_gheare = hardwareMap.get(Servo.class, "servo_gheara");
+    }
 
 
     public void open()
@@ -34,7 +38,7 @@ public class IntakeModule {
 
     public void close()
     {
-        servo_gheare.setPosition(0.48);
+        servo_gheare.setPosition(0.50);
     }
 
 

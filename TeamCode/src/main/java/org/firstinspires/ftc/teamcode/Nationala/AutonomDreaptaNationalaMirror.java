@@ -19,8 +19,8 @@ import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.vision.DetectionClass;
 import org.firstinspires.ftc.teamcode.vision.pipelines.SleeveDetection;
 
-@Autonomous(name = "Dreapta_Nationala", group = "Robot")
-public class AutonomDreaptaNationala extends LinearOpMode {
+@Autonomous(name = "Dreapta_Nationala_Mirror", group = "Robot")
+public class AutonomDreaptaNationalaMirror extends LinearOpMode {
 
     public static double DISTANCE = 4;
     Servo servo_gheare = null;
@@ -76,14 +76,14 @@ public class AutonomDreaptaNationala extends LinearOpMode {
             y = 14;
 
         } else if (parkingPosition == SleeveDetection.ParkingPosition.CENTER) {
-            x = -40;  //-41
+            x = -41;
             y = 14;
         } else if (parkingPosition == SleeveDetection.ParkingPosition.LEFT) {
             x = -16.3;
             y = 14;
         }
 
-        Pose2d startPose = new Pose2d(-36.39, 63.0, Math.toRadians(-90));
+        Pose2d startPose = new Pose2d(-36., 63.0, Math.toRadians(-90));
 
         drive.setPoseEstimate(startPose);
 
@@ -92,14 +92,14 @@ public class AutonomDreaptaNationala extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(0.5, bratModule::goUp)
                 .lineTo((new Vector2d(-38, 25.5)))
                 .UNSTABLE_addTemporalMarkerOffset(0.5, glisieraModule::goUp)
-                .turn(Math.toRadians(29))
+                .turn(Math.toRadians(27.5))
                 .waitSeconds(0.5)
                 .UNSTABLE_addTemporalMarkerOffset(0.5, intake::open)
                 .waitSeconds(1)
                 .UNSTABLE_addTemporalMarkerOffset(0, bratModule::autonom)
                 .UNSTABLE_addTemporalMarkerOffset(1, glisieraModule::goDown)
                 .lineToLinearHeading(new Pose2d(-38, 12, Math.toRadians(0)))
-                .lineToLinearHeading(new Pose2d(-65., 13., Math.toRadians(0.0)))
+                .lineToLinearHeading(new Pose2d(-64.6, 13., Math.toRadians(0.0)))
                 .waitSeconds(0.5)
                 .UNSTABLE_addTemporalMarkerOffset(0, intake::close)
                 .waitSeconds(0.5)
@@ -115,7 +115,7 @@ public class AutonomDreaptaNationala extends LinearOpMode {
                 .UNSTABLE_addTemporalMarkerOffset(0, glisieraModule::goDown)
                 .UNSTABLE_addTemporalMarkerOffset(0, bratModule::autonom2)
                 .turn(Math.toRadians(32))
-                .lineToLinearHeading(new Pose2d(-65.1, 12.1, Math.toRadians(0.0)))
+                .lineToLinearHeading(new Pose2d(-64.7, 12.1, Math.toRadians(0.0)))
                 .waitSeconds(0.5)
                 .UNSTABLE_addTemporalMarkerOffset(0, intake::close)
                 .waitSeconds(0.5)
@@ -123,14 +123,14 @@ public class AutonomDreaptaNationala extends LinearOpMode {
                 .waitSeconds(0.5)
                 .lineToLinearHeading(new Pose2d(-51.8, 14.23, Math.toRadians(0.0)))
                 .UNSTABLE_addTemporalMarkerOffset(0.5, glisieraModule::goUp)
-                .turn(Math.toRadians(-31))
+                .turn(Math.toRadians(-33))
                 .waitSeconds(0.5)
                 .UNSTABLE_addTemporalMarkerOffset(0.5, intake::open)
                 .waitSeconds(0.5)
-                .lineToLinearHeading(new Pose2d(-57.3, 14.2, Math.toRadians(-31.0)))
+                .lineToLinearHeading(new Pose2d(-57.3, 14.2, Math.toRadians(-33.0)))
                 .UNSTABLE_addTemporalMarkerOffset(0, glisieraModule::goDown)
                 .UNSTABLE_addTemporalMarkerOffset(0, bratModule::autonom2)
-                .turn(Math.toRadians(31))
+                .turn(Math.toRadians(33))
                 .lineToLinearHeading(new Pose2d(x, y, Math.toRadians(0.0)))
 
 

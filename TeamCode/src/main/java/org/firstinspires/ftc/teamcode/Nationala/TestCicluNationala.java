@@ -24,15 +24,17 @@ public class TestCicluNationala extends LinearOpMode {
     //GamepadEx gamepadEx = new GamepadEx(gamepad1);
     ElapsedTime elapsedTime = new ElapsedTime();
     ElapsedTime timpCoborare = new ElapsedTime();
+    ElapsedTime timpUrcare = new ElapsedTime();
 
     boolean boolCoborare = false;
+    boolean boolUrcare = false;
 
 
     Brat brat = new Brat(hardwareMap);
 
     Servo servo_gheare = null;
 
-    int con=5;
+    int con=1;
 
     public DcMotorEx motorDR_ENC = null;
     public DcMotorEx motorST = null;
@@ -54,6 +56,7 @@ public class TestCicluNationala extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
+
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         drive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -61,22 +64,21 @@ public class TestCicluNationala extends LinearOpMode {
         GlisieraModule glisieraModule = new GlisieraModule(hardwareMap);
         BratSModule bratModule = new BratSModule(hardwareMap);
         IntakeModule intake = new IntakeModule(hardwareMap);
-        ImpingatoareModule impingatoare = new ImpingatoareModule(hardwareMap);
+        //ImpingatoareModule impingatoare = new ImpingatoareModule(hardwareMap);
         OdometrieModule odometrie = new OdometrieModule(hardwareMap);
+
         sensorRange = hardwareMap.get(DistanceSensor.class, "sensor_range");
         servo_gheare = hardwareMap.get(Servo.class, "servo_gheara");
+
         servo_gheare.setPosition(0.0);
 
         servoDR = hardwareMap.get(Servo.class, "servo_brat_dr");
         servoST = hardwareMap.get(Servo.class, "servo_brat_st");
 
-        //servoST.setPosition(0.125);//130
-        //servoDR.setPosition(1.0 - 0.125);
-
         glisieraModule.init();
         bratModule.init();
         intake.init();
-        impingatoare.init();
+        //impingatoare.init();
         odometrie.init();
 
 
@@ -105,75 +107,64 @@ public class TestCicluNationala extends LinearOpMode {
 
             drive.update();
 
-            //comenzi pentru servo-ul de la bara BoogeyBots
-
-            if(gamepad1.left_bumper){
-                impingatoare.open();
-                sleep(400);
-                impingatoare.close();
-                //justOpened = true;
-            }
-
-            if(gamepad2.left_trigger>0.1)
+            if(gamepad2.left_stick_button)
             {
-                if(con==1)
-                {
-                    bratModule.autonom();
-                    con++;
-                }
-                else
-                if(con==2)
+                if(con==1 && elapsedTime.milliseconds() > 250.0)
                 {
                     bratModule.autonom2();
                     con++;
+                    elapsedTime.reset();
                 }
                 else
-                if(con==3)
+                if(con==2 && elapsedTime.milliseconds() > 250.0)
                 {
                     bratModule.autonom3();
                     con++;
+                    elapsedTime.reset();
                 }
                 else
-                if(con==4)
+                if(con==3 && elapsedTime.milliseconds() > 250.0)
                 {
                     bratModule.autonom4();
                     con++;
+                    elapsedTime.reset();
                 }
                 else
-                if(con==5)
+                if(con==4 && elapsedTime.milliseconds() > 250.0)
                 {
                     bratModule.autonom5();
+                    con++;
+                    elapsedTime.reset();
                 }
             }
-            if(gamepad2.right_trigger>0.1)
+            if(gamepad2.right_stick_button)
             {
-                if(con==5)
-                {
-                    bratModule.autonom5();
-                    con--;
-                }
-                else
-                if(con==4)
+                if(con==5 && elapsedTime.milliseconds() > 250.0)
                 {
                     bratModule.autonom4();
                     con--;
+                    elapsedTime.reset();
                 }
                 else
-                if(con==3)
+                if(con==4 && elapsedTime.milliseconds() > 250.0)
                 {
                     bratModule.autonom3();
                     con--;
+                    elapsedTime.reset();
                 }
                 else
-                if(con==2)
+                if(con==3 && elapsedTime.milliseconds() > 250.0)
                 {
                     bratModule.autonom2();
                     con--;
+                    elapsedTime.reset();
                 }
                 else
-                if(con==1)
+                if(con==2 && elapsedTime.milliseconds() > 250.0)
                 {
                     bratModule.autonom();
+                    con--;
+                    elapsedTime.reset();
                 }
             }
 
@@ -192,56 +183,48 @@ public class TestCicluNationala extends LinearOpMode {
             }
 
             if (gamepad2.x){
-                intake.open();
-                //elapsedTime.reset();
-                //con_detectat = false;
+                servo_gheare.setPosition(0.0);
             }
 
             else if(gamepad2.y){
-                intake.close();
-                //elapsedTime.reset();
-                //justClosed = true;
+                servo_gheare.setPosition(0.5);
             }
 
-            /*if (elapsedTime.milliseconds() > 250.0 && justClosed){
-                bratModule.goBlack();
-                justClosed = false;*/
-
             if(gamepad2.right_bumper){
-                glisieraModule.goUp();
+                timpUrcare.reset();
+                boolUrcare = true;
                 bratModule.goUp();
             }
 
+            if(boolUrcare && timpUrcare.milliseconds() > 50.0){
+                glisieraModule.goUp();
+            }
+
+
             if (gamepad2.left_bumper) {
                 timpCoborare.reset();
+                timpUrcare.reset();
+                boolUrcare = false;
                 bratModule.goSemi();
-                glisieraModule.goDown();
                 boolCoborare = true;
             }
 
 
-            if(boolCoborare && timpCoborare.milliseconds() > 250.0){
+            if(boolCoborare && timpCoborare.milliseconds() > 200.0){
+                glisieraModule.goDown();
+            }
+
+            if(boolCoborare && timpCoborare.milliseconds() > 700.0){
                 boolCoborare = false;
                 bratModule.goDown();
             }
-
-
             if(gamepad2.dpad_down)
             {
                 glisieraModule.goMid();
                 bratModule.goUp();
             }
-            glisieraModule.update();
 
-            /*if((sensorRange.getDistance(DistanceUnit.CM) < 3.0 && !con_detectat) && elapsedTime.milliseconds() > 500.0)
-            {
-                intake.close();
-                con_detectat = true;
-            }
-            telemetry.addData("cm",sensorRange.getDistance(DistanceUnit.CM));
-            telemetry.update();*/
-            telemetry.addData("Modifier: ", modifier);
-            telemetry.update();
+            glisieraModule.update();
         }
 
     }

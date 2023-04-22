@@ -48,7 +48,7 @@ public class GlisierePID extends LinearOpMode {
         motorST.setDirection(DcMotorSimple.Direction.FORWARD);
         motorDR_ENC.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        PIDController controller = new PIDController(4.0 , 0.0 , 0.1);
+        PIDController controller = new PIDController(4.0 , 0.0 , 0.1);//kd:0.1
 
         controller.reset();
 
