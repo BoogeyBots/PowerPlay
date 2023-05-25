@@ -183,11 +183,11 @@ public class TestCicluNationala extends LinearOpMode {
             }
 
             if (gamepad2.x){
-                servo_gheare.setPosition(0.0);
+                intake.close();
             }
 
             else if(gamepad2.y){
-                servo_gheare.setPosition(0.5);
+                intake.open();
             }
 
             if(gamepad2.right_bumper){

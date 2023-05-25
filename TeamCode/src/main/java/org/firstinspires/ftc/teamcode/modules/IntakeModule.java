@@ -33,12 +33,13 @@ public class IntakeModule {
 
     public void open()
     {
-        servo_gheare.setPosition(0.0);
+        servo_gheare.setPosition(-0.5);
     }
+
 
     public void close()
     {
-        servo_gheare.setPosition(0.50);
+        servo_gheare.setPosition(0.3);
     }
 
 
